@@ -65,11 +65,6 @@ public class Nadam implements IUpdater {
     }
 
     @Override
-    public void applySchedules(int iteration, double newLearningRate) {
-        this.learningRate = newLearningRate;
-    }
-
-    @Override
     public GradientUpdater instantiate(INDArray viewArray, boolean initializeViewArray) {
         NadamUpdater u =  new NadamUpdater(this);
         int[] gradientShape = viewArray.shape();
@@ -82,5 +77,12 @@ public class Nadam implements IUpdater {
     @Override
     public Nadam clone() {
         return new Nadam(learningRate, beta1, beta2, epsilon);
+    }
+
+    public double currentLearningRate(int iteration, int epoch){
+        if(learningRateSchedule != null){
+            return learningRateSchedule.valueAt(iteration, epoch);
+        }
+        return learningRate;
     }
 }
