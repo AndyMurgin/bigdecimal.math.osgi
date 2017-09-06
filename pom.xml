@@ -33,7 +33,6 @@
     </properties>
 
     <name>nd4j-bigdecimalmath-osgi</name>
-    <url>http://nd4j.org/</url>
 
     <developers>
         <developer>
@@ -84,11 +83,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.github.stephenc.findbugs</groupId>
-                <artifactId>findbugs-annotations</artifactId>
-                <version>1.3.9-1</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-math3</artifactId>
