@@ -22,13 +22,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.nd4j</groupId>
-    <artifactId>nd4j</artifactId>
+    <groupId>com.github.andymurgin</groupId>
+    <artifactId>nd4j-bigdecimalmath-osgi</artifactId>
     <version>0.9.5</version>
-
     <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-    <name>nd4j</name>
+    <name>nd4j-bigdecimalmath-osgi</name>
     <url>http://nd4j.org/</url>
 
     <developers>
@@ -53,29 +57,24 @@
         </license>
     </licenses>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+    <modules>
+        <module>nd4j-common</module>
+    </modules>
 
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>3.0.0</version>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <instructions>
+                            <!--
+                            Workaround: See https://issues.apache.org/jira/browse/KARAF-4730 for details
+                            -->
+                            <_removeheaders>Import-Service,Export-Service</_removeheaders>
+                        </instructions>
                     </configuration>
                 </plugin>
             </plugins>
